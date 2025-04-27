@@ -1,5 +1,10 @@
 import luxy from 'luxy.js';
 
+// Force Luxy to global scope for use with CDN builds
+if (typeof window !== "undefined") {
+  window.luxy = luxy;
+}
+
 const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
 const scrollSpeeds = {
@@ -10,14 +15,12 @@ const scrollSpeeds = {
 };
 
 export function initSmoothScroll() {
-  if (isMobile || typeof luxy.init !== "function") return;
-
   document.querySelectorAll("[yc-animate]").forEach((el) => {
     const attr = el.getAttribute("yc-animate");
 
-    if (scrollSpeeds[attr] && !document.getElementById("luxy")) {
+    if (!isMobile && window.luxy && scrollSpeeds[attr]) {
       el.id = "luxy";
-      luxy.init({
+      window.luxy.init({
         wrapper: "#luxy",
         wrapperSpeed: scrollSpeeds[attr],
       });
