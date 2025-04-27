@@ -1,6 +1,6 @@
-// src/externals/luxy-global.js
-import luxy from 'luxy.js';
 
-if (typeof window !== 'undefined') {
-  window.luxy = luxy;
+if (typeof window.luxy === "undefined") {
+  import('luxy.js').then((luxyModule) => {
+    window.luxy = luxyModule.default;
+  });
 }

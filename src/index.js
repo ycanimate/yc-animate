@@ -1,4 +1,5 @@
-import './externals/luxy-global.js'; // makes luxy available globally
+import './externals/luxy-global.js';
+import './externals/split-global.js';
 import { initSmoothScroll } from './animations/luxyScroll.js';
 import { initSplitText } from './animations/splitText.js';
 import { initFade } from './animations/fade.js';

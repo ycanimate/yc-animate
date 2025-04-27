@@ -1,5 +1,3 @@
-import luxy from 'luxy.js';
-
 // Force Luxy to global scope for use with CDN builds
 if (typeof window !== "undefined") {
   window.luxy = luxy;
