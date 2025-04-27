@@ -1,13 +1,16 @@
-// src/animations/splitText.js
 export function initSplitText() {
   document.querySelectorAll("[yc-animate]").forEach((el) => {
     const attr = el.getAttribute("yc-animate");
+    if (!attr || !attr.startsWith("split-text")) return;
 
-    if (!attr.startsWith("split-text")) return;
+    // Check SplitType safely from global
+    const SplitTypeGlobal = window.SplitType || SplitType;
+    if (typeof SplitTypeGlobal === "undefined") {
+      console.warn("❌ SplitType is not loaded");
+      return;
+    }
 
-    if (typeof SplitType === "undefined") return;
-
-    const lines = new SplitType(el, {
+    const lines = new SplitTypeGlobal(el, {
       types: "lines",
       lineClass: "ycanimate-splittext",
     }).lines;
